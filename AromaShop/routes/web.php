@@ -11,6 +11,20 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'PagesController@home');
+Route::get('/login', 'PagesController@login');
+Route::get('/register', 'PagesController@register');
+Route::get('/contact', 'PagesController@contact');
+
+
+// Shop routes
+Route::get('/category', 'PagesController@category');
+Route::get('/product', 'PagesController@product');
+Route::get('/checkout', 'PagesController@checkout');
+Route::get('/confirmation', 'PagesController@confirmation');
+Route::get('/cart', 'PagesController@cart');
+Route::get('/tracking', 'PagesController@tracking');
+
+// Blog routes
+Route::get('/blog', 'PagesController@blog');
+Route::get('/post', 'PagesController@post');
