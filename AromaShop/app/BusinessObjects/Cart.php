@@ -1,15 +1,39 @@
 <?php
 
+namespace App\BusinessObjects;
+
 class Cart
 {
-    public $product;
-    public $quantity;
-    public $coupon;
-    private $total;
+    private $id;
+    private $cartItems;
+    private $coupon;
+    private $totalAmount;
 
-    public function applyCoupon()
+    public function getId()
     { }
 
-    public function getTotal()
+    public function setId($id)
+    { }
+
+    public function getCoupon()
+    { }
+
+    public function setCoupon($coupon)
+    { }
+
+
+
+    public function applyCoupon($coupon)
+    { }
+
+    public function getTotalAmount()
+    {
+        return $this->totalAmount();
+    }
+
+    public function addCartItem()
+    { }
+
+    public function removeCartItem()
     { }
 }

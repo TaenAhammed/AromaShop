@@ -1,10 +1,12 @@
 <?php
 
+namespace App\BusinessObjects;
+
+
 class Price
 {
     private $price;
     public $currency;
-    public $tax;
 
     public function getPrice()
     {
@@ -20,6 +22,9 @@ class Price
         }
     }
 
-    public function applyTax()
+    public function getCurrency()
+    { }
+
+    public function setCurrency()
     { }
 }

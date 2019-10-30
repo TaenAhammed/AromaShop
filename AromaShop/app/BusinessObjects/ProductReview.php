@@ -1,5 +1,7 @@
 <?php
 
+namespace App\BusinessObjects;
+
 class ProductReview
 {
     public $name;
@@ -13,4 +15,34 @@ class ProductReview
     {
         $this->isPublished = !$this->isPublished;;
     }
+
+    public function setName()
+    { }
+
+    public function getName()
+    { }
+
+    public function getEmail()
+    { }
+
+    public function setEmail()
+    { }
+
+    public function getSubject()
+    { }
+
+    public function setSubject()
+    { }
+
+    public function getMessage()
+    { }
+
+    public function setMessage()
+    { }
+
+    public function getStar()
+    { }
+
+    public function setStar()
+    { }
 }
