@@ -34,3 +34,8 @@ Route::get('/tracking', 'PagesController@tracking');
 // Blog routes
 Route::get('/blog', 'PagesController@blog');
 Route::get('/post', 'PagesController@post');
+
+// Demo routes
+Route::get('/admin/dashboard', function () {
+    return view('admin.layouts.master');
+});
