@@ -37,5 +37,5 @@ Route::get('/post', 'PagesController@post');
 
 // Demo routes
 Route::get('/admin/dashboard', function () {
-    return view('admin.layouts.master');
+    return view('admin.layouts.dashboard');
 });
