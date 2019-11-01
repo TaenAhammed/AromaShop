@@ -34,3 +34,6 @@ Route::get('/tracking', 'PagesController@tracking');
 // Blog routes
 Route::get('/blog', 'PagesController@blog');
 Route::get('/post', 'PagesController@post');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
