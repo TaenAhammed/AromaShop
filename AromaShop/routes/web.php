@@ -31,6 +31,11 @@ Route::get('/confirmation', 'PagesController@confirmation');
 Route::get('/cart', 'PagesController@cart');
 Route::get('/tracking', 'PagesController@tracking');
 
+// demo routes
+Route::get('/admin/dashboard', function () {
+    return view('admin.layouts.dashboard');
+});
+
 // Blog routes
 Route::get('/blog', 'PagesController@blog');
 Route::get('/post', 'PagesController@post');
