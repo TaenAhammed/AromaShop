@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'aromashop'),
 
     /*
     |--------------------------------------------------------------------------
@@ -119,7 +119,7 @@ return [
     |
     */
 
-    'key' => env('APP_KEY'),
+    'key' => env('APP_KEY', 'base64:KXP5fRzaBaRCSxIHr4R01bG81x2txLY7WiKZgArkL7g='),
 
     'cipher' => 'AES-256-CBC',
 
