@@ -2,11 +2,5 @@
 
 namespace App\Repositories;
 
-interface IProductCommentRepository
-{
-    public function get();
-    public function getAll();
-    public function add();
-    public function update();
-    public function delete();
-}
+interface IProductCommentRepository extends IRepository
+{ }
