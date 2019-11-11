@@ -4,8 +4,6 @@ namespace App\ViewModels;
 
 use App\Services\IProductService;
 
-// use Illuminate\Http\Request;
-
 class StoreProductModel implements IStoreProductModel
 {
     private $_productService;
