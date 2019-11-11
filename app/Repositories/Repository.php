@@ -23,7 +23,7 @@ class Repository implements IRepository
         return $this->model->all();
     }
 
-    public function add(array $data)
+    public function add($data)
     {
         return $this->model->create($data);
     }

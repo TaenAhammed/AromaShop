@@ -2,7 +2,9 @@
 
 namespace App\Services;
 
+use App\BusinessObjects\IProduct;
+
 interface IProductService
 {
-    public function store(array $data): void;
+    public function store(IProduct $product): void;
 }

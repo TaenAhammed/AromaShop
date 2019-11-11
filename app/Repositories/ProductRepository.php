@@ -12,10 +12,16 @@ class ProductRepository extends Repository implements IProductRepository
         parent::setModel($product);
     }
 
-    public function store($data)
+    public function add($product)
     {
-        var_dump($data);
-        echo ("<br/>From Repository<br/>");
-        // parent::add($data);
+        $product_arr = [
+            'name' => $product->getName(),
+            'image' => $product->getImage(),
+            'price' => $product->getPrice(),
+            'category' => $product->getCategory(),
+            'discount' => $product->getDiscount()
+        ];
+
+        parent::add($product_arr);
     }
 }

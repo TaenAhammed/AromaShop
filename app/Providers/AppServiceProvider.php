@@ -21,6 +21,11 @@ class AppServiceProvider extends ServiceProvider
         );
 
         $this->app->bind(
+            'App\BusinessObjects\IProduct',
+            'App\BusinessObjects\Product'
+        );
+
+        $this->app->bind(
             'App\Services\IProductService',
             'App\Services\ProductService'
         );
