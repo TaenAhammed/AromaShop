@@ -8,11 +8,6 @@ class Repository implements IRepository
 {
     protected $model;
 
-    public function __construct(Model $model)
-    {
-        $this->model = $model;
-    }
-
     public function get($id)
     {
         return $this->model->findOrFail($id);
@@ -25,18 +20,18 @@ class Repository implements IRepository
 
     public function add($data)
     {
-        return $this->model->create($data);
+        $this->model->create($data);
     }
 
-    public function update(array $data, $id)
+    public function update($data, $id)
     {
         $record = $this->find($id);
-        return $record->update($data);
+        $record->update($data);
     }
 
     public function delete($id)
     {
-        return $this->model->destroy($id);
+        $this->model->destroy($id);
     }
 
     public function getModel()
@@ -47,12 +42,5 @@ class Repository implements IRepository
     public function setModel($model)
     {
         $this->model = $model;
-        return $this;
-    }
-
-    // Eager load database relationships
-    public function with($relations)
-    {
-        return $this->model->with($relations);
     }
 }
