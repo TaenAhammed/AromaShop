@@ -42,3 +42,6 @@ Route::get('/post', 'PagesController@post');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/products/create', 'ProductController@create');
+Route::post('/products', 'ProductController@store');

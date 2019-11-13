@@ -16,13 +16,23 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind(
-            'App\Repositories\IHelloRepository',
-            'App\Repositories\HelloRepository',
+            'App\ViewModels\IStoreProductModel',
+            'App\ViewModels\StoreProductModel'
         );
 
         $this->app->bind(
-            'App\Services\IHelloService',
-            'App\Services\HelloService',
+            'App\BusinessObjects\IProduct',
+            'App\BusinessObjects\Product'
+        );
+
+        $this->app->bind(
+            'App\Services\IProductService',
+            'App\Services\ProductService'
+        );
+
+        $this->app->bind(
+            'App\Repositories\IProductRepository',
+            'App\Repositories\ProductRepository'
         );
     }
 
