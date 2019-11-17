@@ -15,8 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/hello', 'HelloController@index');
-
 Route::get('/', 'PagesController@home');
 Route::get('/login', 'PagesController@login');
 Route::get('/register', 'PagesController@register');
@@ -39,9 +37,11 @@ Route::get('/admin/dashboard', function () {
 // Blog routes
 Route::get('/blog', 'PagesController@blog');
 Route::get('/post', 'PagesController@post');
+
+// Authenticated routes
 Auth::routes();
+Route::prefix('admin')->group(function () {
+    Route::resource('/products', 'Admin\ProductController');
+});
 
 Route::get('/home', 'HomeController@index')->name('home');
-
-Route::get('/products/create', 'ProductController@create');
-Route::post('/products', 'ProductController@store');

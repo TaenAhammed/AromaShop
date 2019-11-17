@@ -4,6 +4,7 @@
 
 @include('admin.includes.sidebar')
 
+@yield('content')
 @include('admin.includes.content')
 
 

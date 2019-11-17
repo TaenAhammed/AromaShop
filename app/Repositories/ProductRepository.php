@@ -4,11 +4,13 @@ namespace App\Repositories;
 
 use App\Models\Product;
 use App\Repositories\Repository;
+use App\Factories\ProductsFactory as ProductsFactory;
 
 class ProductRepository extends Repository implements IProductRepository
 {
-    public function __construct(Product $product)
+    public function __construct()
     {
+        $product = resolve('App\Models\Product');
         parent::setModel($product);
     }
 
@@ -23,5 +25,11 @@ class ProductRepository extends Repository implements IProductRepository
         ];
 
         parent::add($product_arr);
+    }
+
+    public function getAll()
+    {
+        $productsArr = parent::getAll();
+        return ProductsFactory::createProduct($productsArr);
     }
 }

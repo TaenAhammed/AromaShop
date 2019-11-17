@@ -2,8 +2,6 @@
 
 namespace App\Repositories;
 
-use Illuminate\Database\Eloquent\Model;
-
 class Repository implements IRepository
 {
     protected $model;

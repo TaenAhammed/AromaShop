@@ -34,6 +34,11 @@ class AppServiceProvider extends ServiceProvider
             'App\Repositories\IProductRepository',
             'App\Repositories\ProductRepository'
         );
+
+        $this->app->bind(
+            'App\ViewModels\IListProductModel',
+            'App\ViewModels\ListProductModel'
+        );
     }
 
     /**

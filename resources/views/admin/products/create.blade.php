@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <form action="/products" method="POST">
+    <form action="/admin/products" method="POST">
         @csrf
         <table>
             <tr>
