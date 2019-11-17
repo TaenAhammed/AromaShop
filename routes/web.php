@@ -15,8 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/hello', 'HelloController@index');
-
 Route::get('/', 'PagesController@home');
 Route::get('/login', 'PagesController@login');
 Route::get('/register', 'PagesController@register');
@@ -33,7 +31,7 @@ Route::get('/tracking', 'PagesController@tracking');
 
 // demo routes
 Route::get('/admin/dashboard', function () {
-    return view('admin.layouts.dashboard');
+    return view('admin.pages.dashboard');
 });
 
 // Blog routes
