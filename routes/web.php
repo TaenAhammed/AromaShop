@@ -31,7 +31,7 @@ Route::get('/tracking', 'PagesController@tracking');
 
 // demo routes
 Route::get('/admin/dashboard', function () {
-    return view('admin.layouts.dashboard');
+    return view('admin.pages.dashboard');
 });
 
 // Blog routes
