@@ -68,4 +68,19 @@ class ProductRepository extends Repository implements IProductRepository
         $id = $product->getId();
         parent::update($product_arr, $id);
     }
+
+    public function getPagedProducts($searchText, $pageIndex, $pageSize)
+    {
+        return $this->getAll();
+    }
+
+    public function getTotalProductCount()
+    {
+        return count($this->getAll());
+    }
+
+    public function getTotalDisplayableProducts($searchText)
+    {
+        return count($this->getAll());
+    }
 }

@@ -2,6 +2,8 @@
 
 namespace App\Factories;
 
+use App\ViewModels\ICreateProductModel;
+
 class ProductsFactory
 {
     public static function createProducts($productsArr)
@@ -22,5 +24,17 @@ class ProductsFactory
         }
 
         return $products;
+    }
+
+    public static function convertProductFromModel(ICreateProductModel $model)
+    {
+        $product = resolve('App\BusinessObjects\IProduct');
+        $product->setId($model->id);
+        $product->setName($model->name);
+        $product->setImage($model->image);
+        $product->setPrice($model->price);
+        $product->setCategory($model->category);
+        $product->setDiscount($model->discount);
+        return $product;
     }
 }

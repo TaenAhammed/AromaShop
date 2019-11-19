@@ -33,4 +33,39 @@ class ViewProductModel implements IViewProductModel
 
         $this->_productService->delete($product);
     }
+
+    public function getProductsJsonData(DataTablesModel $dataTablesModel)
+    {
+        $records = $this->_productService->getProducts(
+            $dataTablesModel->getSearchText(),
+            $dataTablesModel->getPageIndex(),
+            $dataTablesModel->getPageSize()
+        );
+
+        $total = $records->total;
+        $totalFiltered = $records->totalDisplay;
+
+        return
+            [
+                "recordsTotal" => $total,
+                "recordsFiltered" => $totalFiltered,
+                "data" => $this->getProductFieldValues($records->data)
+            ];
+    }
+
+    private function getProductFieldValues($productData)
+    {
+        $products = [];
+        for ($i = 0; $i < count($productData); $i++) {
+            $product[] = [
+                "$productData->getId()",
+                "$productData->getName()",
+                "$productData->getImage()",
+                "$productData->getPrice()",
+                "$productData->getDiscount()",
+            ];
+        }
+
+        return $products;
+    }
 }

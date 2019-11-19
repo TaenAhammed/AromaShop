@@ -72,10 +72,17 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id, ICreateProductModel $CreateProductModel)
+    public function update(Request $request, ICreateProductModel $CreateProductModel)
     {
-        $CreateProductModel->update($request, $id);
+        //$CreateProductModel->update($request);
         return redirect('/admin/products');
+    }
+
+    public function getProductsJson(Request $request)
+    {
+        $dataTablesModel = new DataTablesModel($request);
+        $model = resolve('App\ViewModels\IViewProductModel');
+        return ["total" => 33, "totalFiltered" => 12, "data" => []]; //$model->getProductsJsonData($dataTablesModel);
     }
 
     /**

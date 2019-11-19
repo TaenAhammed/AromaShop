@@ -42,6 +42,7 @@ Route::get('/post', 'PagesController@post');
 Auth::routes();
 Route::prefix('admin')->group(function () {
     Route::resource('/products', 'Admin\ProductController');
+    Route::get('/products/getProductsJson', 'Admin\ProductController@getProductsJson');
 });
 
 Route::get('/home', 'HomeController@index')->name('home');

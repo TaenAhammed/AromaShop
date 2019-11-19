@@ -39,6 +39,27 @@
     <!-- Main content -->
     <section class="content">
 
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">DataTable with default features</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th><input type="checkbox" /></th>
+                            <th>Name</th>
+                            <th>Image(s)</th>
+                            <th>Price</th>
+                            <th>Discount</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+        <!-- /.card -->
+
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
@@ -129,9 +150,6 @@
                 </table>
             </div>
             <!-- /.card-body -->
-        </div>
-        <!-- /.card -->
-
     </section>
     <!-- /.content -->
 
@@ -144,4 +162,22 @@
 
 @section('scripts')
 @include('admin.includes.scripts')
+<script>
+    $(function () {
+        $('#example1').DataTable({
+                "processing": true,
+                "serverSide": true,
+                "ajax": "/admin/products/getProductsJson",
+                "columnDefs": [
+                    {
+                        "orderable": false,
+                        "targets": 0,
+                        "render": function (data, type, row) {
+                            return `<input type='checkbox' value='${data}'/>`;
+                        }
+                    }
+                ]
+            });
+    });
+</script>
 @endsection

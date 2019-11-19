@@ -24,6 +24,15 @@ class ProductService implements IProductService
         return $this->_productRepository->getAll();
     }
 
+    public function getProducts($searchText, $pageIndex, $pageSize)
+    {
+        $products = $this->_productRepository->getPagedProducts($searchText, $pageIndex, $pageSize);
+        $totalCount = $this->_productRepository->getTotalProductCount();
+        $totalDisplayCount = $this->_productRepository->getTotalDisplayableProducts($searchText);
+
+        return new PagedData($products, $totalCount, $totalDisplayCount);
+    }
+
     public function get($product)
     {
         return $this->_productRepository->get($product);
