@@ -2,7 +2,7 @@
 
 namespace App\ViewModels;
 
-interface IStoreProductModel
+interface ICreateProductModel
 {
     public function store($request);
 }

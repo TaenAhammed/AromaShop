@@ -2,7 +2,7 @@
 
 namespace App\ViewModels;
 
-interface IListProductModel
+interface IViewProductModel
 {
     public function getAll();
 }

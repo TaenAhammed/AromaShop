@@ -4,7 +4,7 @@ namespace App\ViewModels;
 
 use App\Services\IProductService;
 
-class StoreProductModel implements IStoreProductModel
+class CreateProductModel implements ICreateProductModel
 {
     private $_productService;
     public function __construct(IProductService $productService)
