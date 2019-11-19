@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Product;
 use App\ViewModels\IStoreProductModel;
 use App\ViewModels\IListProductModel;
 
@@ -18,8 +17,7 @@ class ProductController extends Controller
     public function index(IListProductModel $listProductModel)
     {
         $products = $listProductModel->getAll();
-        // $products = Product::all();
-        return view('admin.products.index', ['products' => $products]);
+        return view('admin.pages.products.index', ['products' => $products]);
     }
 
     /**
@@ -29,7 +27,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('admin.products.create');
+        return view('admin.pages.products.create');
     }
 
     /**
@@ -61,9 +59,10 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, IListProductModel $listProductModel)
     {
-        //
+        $product = $listProductModel->get($id);
+        return view('admin.pages.products.update', ['product' => $product]);
     }
 
     /**
@@ -73,9 +72,10 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, IStoreProductModel $storeProductModel)
     {
-        //
+        $storeProductModel->update($request, $id);
+        return redirect('/admin/products');
     }
 
     /**
@@ -84,8 +84,9 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, IListProductModel $listProductModel)
     {
-        //
+        $listProductModel->delete($id);
+        return redirect('/admin/products');
     }
 }

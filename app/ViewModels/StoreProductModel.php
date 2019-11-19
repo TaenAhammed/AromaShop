@@ -24,4 +24,18 @@ class StoreProductModel implements IStoreProductModel
 
         $this->_productService->store($product);
     }
+
+    public function update($request, $id)
+    {
+        $product = resolve('App\BusinessObjects\IProduct');
+
+        $product->setId($id);
+        $product->setName($request->input('name'));
+        $product->setImage($request->input('image'));
+        $product->setPrice($request->input('price'));
+        $product->setCategory($request->input('category'));
+        $product->setDiscount($request->input('discount'));
+
+        $this->_productService->update($product);
+    }
 }
