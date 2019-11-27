@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\ViewModels\ICreateProductModel;
 use App\ViewModels\IViewProductModel;
+use Illuminate\Support\Facades\Log;
+use App\ViewModels\DataTablesModel;
 
 class ProductController extends Controller
 {
@@ -81,8 +83,15 @@ class ProductController extends Controller
     public function getProductsJson(Request $request)
     {
         $dataTablesModel = new DataTablesModel($request);
+        Log::debug("Debug:" . $dataTablesModel->getStart());
+        
         $model = resolve('App\ViewModels\IViewProductModel');
-        return ["total" => 33, "totalFiltered" => 12, "data" => []]; //$model->getProductsJsonData($dataTablesModel);
+        return DataTablesModel::emptyResult(); //$model->getProductsJsonData($dataTablesModel);
+    }
+
+    public function test()
+    {
+        return redirect('/admin/products');
     }
 
     /**

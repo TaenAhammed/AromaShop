@@ -41,8 +41,8 @@ Route::get('/post', 'PagesController@post');
 // Authenticated routes
 Auth::routes();
 Route::prefix('admin')->group(function () {
-    Route::resource('/products', 'Admin\ProductController');
     Route::get('/products/getProductsJson', 'Admin\ProductController@getProductsJson');
+    Route::resource('/products', 'Admin\ProductController');
 });
 
 Route::get('/home', 'HomeController@index')->name('home');

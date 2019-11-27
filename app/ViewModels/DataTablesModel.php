@@ -43,4 +43,13 @@ class DataTablesModel
         else
             return $this->getLength();
     }
+
+    public static function emptyResult()
+    {
+        return [
+            "recordsTotal" => 0,
+            "recordsFiltered" => 0,
+            "data" => []
+        ];
+    }
 }
