@@ -83,10 +83,8 @@ class ProductController extends Controller
     public function getProductsJson(Request $request)
     {
         $dataTablesModel = new DataTablesModel($request);
-        Log::debug("Debug:" . $dataTablesModel->getStart());
-        
         $model = resolve('App\ViewModels\IViewProductModel');
-        return DataTablesModel::emptyResult(); //$model->getProductsJsonData($dataTablesModel);
+        return $model->getProductsJsonData($dataTablesModel);
     }
 
     public function test()

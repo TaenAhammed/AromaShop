@@ -1,4 +1,6 @@
 <?php
+namespace App\ViewModels;
+
 class PagedData
 {
     public $data;

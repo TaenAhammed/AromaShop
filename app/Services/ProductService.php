@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\BusinessObjects\IProduct;
 use App\Repositories\IProductRepository;
+use App\ViewModels\PagedData;
 
 class ProductService implements IProductService
 {

@@ -3,6 +3,7 @@
 namespace App\ViewModels;
 
 use App\Services\IProductService;
+use Illuminate\Support\Facades\Log;
 
 class ViewProductModel implements IViewProductModel
 {
@@ -45,6 +46,8 @@ class ViewProductModel implements IViewProductModel
         $total = $records->total;
         $totalFiltered = $records->totalDisplay;
 
+        Log::debug("total:" . $total);
+
         return
             [
                 "recordsTotal" => $total,
@@ -57,15 +60,14 @@ class ViewProductModel implements IViewProductModel
     {
         $products = [];
         for ($i = 0; $i < count($productData); $i++) {
-            $product[] = [
-                "$productData->getId()",
-                "$productData->getName()",
-                "$productData->getImage()",
-                "$productData->getPrice()",
-                "$productData->getDiscount()",
+            $products[] = [
+                $productData[$i]->getId(),
+                $productData[$i]->getName(),
+                $productData[$i]->getImage(),
+                $productData[$i]->getPrice(),
+                $productData[$i]->getDiscount(),
             ];
         }
-
         return $products;
     }
 }
