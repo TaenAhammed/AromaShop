@@ -2,8 +2,6 @@
 
 namespace App\Repositories;
 
-use Illuminate\Database\Eloquent\Model;
-
 class Repository implements IRepository
 {
     protected $model;
@@ -25,8 +23,9 @@ class Repository implements IRepository
 
     public function update($data, $id)
     {
-        $record = $this->find($id);
+        $record = $this->model->findOrFail($id);
         $record->update($data);
+        // var_dump($data);
     }
 
     public function delete($id)

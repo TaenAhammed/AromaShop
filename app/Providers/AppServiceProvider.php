@@ -16,8 +16,8 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind(
-            'App\ViewModels\IStoreProductModel',
-            'App\ViewModels\StoreProductModel'
+            'App\ViewModels\ICreateProductModel',
+            'App\ViewModels\CreateProductModel'
         );
 
         $this->app->bind(
@@ -33,6 +33,11 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             'App\Repositories\IProductRepository',
             'App\Repositories\ProductRepository'
+        );
+
+        $this->app->bind(
+            'App\ViewModels\IViewProductModel',
+            'App\ViewModels\ViewProductModel'
         );
     }
 

@@ -37,9 +37,12 @@ Route::get('/admin/dashboard', function () {
 // Blog routes
 Route::get('/blog', 'PagesController@blog');
 Route::get('/post', 'PagesController@post');
+
+// Authenticated routes
 Auth::routes();
+Route::prefix('admin')->group(function () {
+    Route::get('/products/getProductsJson', 'Admin\ProductController@getProductsJson');
+    Route::resource('/products', 'Admin\ProductController');
+});
 
 Route::get('/home', 'HomeController@index')->name('home');
-
-Route::get('/products/create', 'ProductController@create');
-Route::post('/products', 'ProductController@store');
