@@ -41,7 +41,7 @@ class ProductController extends Controller
     public function store(Request $request, ICreateProductModel $CreateProductModel)
     {
         $CreateProductModel->store($request);
-        return redirect()->back();
+        return redirect()->back()->withSuccess("Product Added");
     }
 
     /**
