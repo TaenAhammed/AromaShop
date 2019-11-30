@@ -14,6 +14,14 @@ class ProductRepository extends Repository implements IProductRepository
         parent::setModel($product);
     }
 
+    public function getWithFilter($field, $fieldValue, $orderColumn, $orderDirection, $itemCount)
+    {
+        return $this->model->where($field, 'like', '%'.$fieldValue.'%')
+            ->orderBy($orderColumn, $orderDirection)
+            ->take($itemCount)
+            ->get();
+    }
+
     public function add($product)
     {
         $product_arr = [
@@ -78,7 +86,7 @@ class ProductRepository extends Repository implements IProductRepository
         Log::Debug('sortOrder - column: ' . $sortOrder->columnName);
         Log::Debug('sortOrder - direction: ' . $sortOrder->columnDirection);
 
-        $productsArr = parent::getWithFilter('name', $searchText, $sortOrder->columnName, $sortOrder->columnDirection, $pageSize);
+        $productsArr = $this->getWithFilter('name', $searchText, $sortOrder->columnName, $sortOrder->columnDirection, $pageSize);
         return ProductsFactory::createProducts($productsArr);
     }
 
