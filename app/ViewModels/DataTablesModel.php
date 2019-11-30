@@ -25,7 +25,16 @@ class DataTablesModel
 
     public function getSearchText()
     {
-        return $this->_request->input("search[value]");
+        return $this->_request->input("search")['value'];
+    }
+
+    public function getSortOrder($columnNames)
+    {
+        $orders = $this->_request->input("order");
+        if($orders != null && count($orders) > 0)
+        {
+            return new SortOrder($columnNames[$orders[0]['column']], $orders[0]['dir']);
+        }
     }
 
     public function getPageIndex()

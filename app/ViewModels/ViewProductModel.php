@@ -39,6 +39,7 @@ class ViewProductModel implements IViewProductModel
     {
         $records = $this->_productService->getProducts(
             $dataTablesModel->getSearchText(),
+            $dataTablesModel->getSortOrder(['id', 'name', 'image', 'price', 'discount']),
             $dataTablesModel->getPageIndex(),
             $dataTablesModel->getPageSize()
         );
