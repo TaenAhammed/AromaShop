@@ -5,6 +5,7 @@ namespace App\Services;
 use App\BusinessObjects\IProduct;
 use App\Repositories\IProductRepository;
 use App\ViewModels\PagedData;
+use Illuminate\Support\Facades\Log;
 
 class ProductService implements IProductService
 {
@@ -25,9 +26,10 @@ class ProductService implements IProductService
         return $this->_productRepository->getAll();
     }
 
-    public function getProducts($searchText, $pageIndex, $pageSize)
+    public function getProducts($searchText, $sortOrder, $pageIndex, $pageSize)
     {
-        $products = $this->_productRepository->getPagedProducts($searchText, $pageIndex, $pageSize);
+        $products = $this->_productRepository->getPagedProducts($searchText, $sortOrder, $pageIndex, $pageSize);
+        Log::Debug('DataFound:' . count($products));
         $totalCount = $this->_productRepository->getTotalProductCount();
         $totalDisplayCount = $this->_productRepository->getTotalDisplayableProducts($searchText);
 

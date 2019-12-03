@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Repositories\Repository;
 use App\Factories\ProductsFactory as ProductsFactory;
+use Illuminate\Support\Facades\Log;
 
 class ProductRepository extends Repository implements IProductRepository
 {
@@ -11,6 +12,14 @@ class ProductRepository extends Repository implements IProductRepository
     {
         $product = resolve('App\Models\Product');
         parent::setModel($product);
+    }
+
+    public function getWithFilter($field, $fieldValue, $orderColumn, $orderDirection, $itemCount)
+    {
+        return $this->model->where($field, 'like', '%'.$fieldValue.'%')
+            ->orderBy($orderColumn, $orderDirection)
+            ->take($itemCount)
+            ->get();
     }
 
     public function add($product)
@@ -69,9 +78,16 @@ class ProductRepository extends Repository implements IProductRepository
         parent::update($product_arr, $id);
     }
 
-    public function getPagedProducts($searchText, $pageIndex, $pageSize)
+    public function getPagedProducts($searchText, $sortOrder, $pageIndex, $pageSize)
     {
-        return $this->getAll();
+        Log::Debug('searchText' . $searchText);
+        Log::Debug('pageIndex' . $pageIndex);
+        Log::Debug('pageSize' . $pageSize);
+        Log::Debug('sortOrder - column: ' . $sortOrder->columnName);
+        Log::Debug('sortOrder - direction: ' . $sortOrder->columnDirection);
+
+        $productsArr = $this->getWithFilter('name', $searchText, $sortOrder->columnName, $sortOrder->columnDirection, $pageSize);
+        return ProductsFactory::createProducts($productsArr);
     }
 
     public function getTotalProductCount()
@@ -81,6 +97,6 @@ class ProductRepository extends Repository implements IProductRepository
 
     public function getTotalDisplayableProducts($searchText)
     {
-        return count($this->getAll());
+        return count($this->getWithFilter('name', $searchText, 'name', 'asc', 5));
     }
 }
