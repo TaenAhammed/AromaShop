@@ -40,7 +40,7 @@ class ProductController extends Controller
      */
     public function store(Request $request, ICreateProductModel $CreateProductModel)
     {
-        $CreateProductModel->store($request);
+        $CreateProductModel->store();
         return redirect()->back();
     }
 
@@ -74,9 +74,9 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ICreateProductModel $CreateProductModel)
+    public function update(Request $request, ICreateProductModel $createProductModel)
     {
-        //$CreateProductModel->update($request);
+        $createProductModel->update();
         return redirect('/admin/products');
     }
 

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Repositories;
+use Illuminate\Support\Facades\Log;
 
 class Repository implements IRepository
 {
@@ -32,6 +33,7 @@ class Repository implements IRepository
     public function update($data, $id)
     {
         $record = $this->model->findOrFail($id);
+        Log::Debug("Came to model update:" . $record->name);
         $record->update($data);
         // var_dump($data);
     }

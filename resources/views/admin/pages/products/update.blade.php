@@ -49,6 +49,7 @@
             <form role="form" action="/admin/products/{{ $product->getId() }}" method="POST">
                 @csrf
                 @method('PUT')
+                <input type="hidden" value="{{ $product->getId() }}" name="id" />
                 <div class="card-body">
                     <div class="form-group">
                         <label for="name">Name</label>

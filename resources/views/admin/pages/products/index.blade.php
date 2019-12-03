@@ -53,6 +53,7 @@
                             <th>Image(s)</th>
                             <th>Price</th>
                             <th>Discount</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                 </table>
@@ -174,6 +175,22 @@
                         "targets": 0,
                         "render": function (data, type, row) {
                             return `<input type='checkbox' value='${data}'/>`;
+                        }
+                    },
+                    {
+                        "orderable": false,
+                        "targets": 5,
+                        "render": function (data, type, row) {
+                            return `<button type="submit" class="btn btn-info btn-sm" onclick="window.location.href='/admin/products/${data}/edit'" value='${data}'>
+                                <i class="fas fa-pencil-alt">
+                                </i>
+                                Edit
+                            </button>
+                            <button type="submit" class="btn btn-danger btn-sm" href="#" value='${data}'>
+                                <i class="fas fa-trash">
+                                </i>
+                                Delete
+                            </button>`;
                         }
                     }
                 ]

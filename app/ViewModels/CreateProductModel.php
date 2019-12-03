@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Factories\ProductsFactory;
 use App\ViewModels\ICreateProductModel;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Log;
 
 class CreateProductModel implements ICreateProductModel
 {
@@ -20,28 +21,29 @@ class CreateProductModel implements ICreateProductModel
 
     public function __construct(IProductService $productService, Request $request)
     {
-        //throw new ModelNotFoundException("request missing");
-
         $this->_productService = $productService;
-        //$this->id = $request->input('id');
+        $this->loadFields($request);
+    }
+
+    public function store()
+    {
+        $product = ProductsFactory::convertProductFromModel($this);
+        $this->_productService->store($product);
+    }
+
+    public function update()
+    {
+        $product = ProductsFactory::convertProductFromModel($this);
+        $this->_productService->update($product);
+    }
+
+    private function loadFields(Request $request)
+    {
+        $this->id = $request->input('id');
         $this->name = $request->input('name');
         $this->image = $request->input('image');
         $this->price = $request->input('price');
         $this->category = $request->input('category');
         $this->discount = $request->input('discount');
-    }
-
-    public function store($request)
-    {
-        $product = ProductsFactory::convertProductFromModel($this);
-
-        $this->_productService->store($product);
-    }
-
-    public function update($request)
-    {
-        $product = ProductsFactory::convertProductFromModel($this);
-
-        $this->_productService->update($product);
     }
 }

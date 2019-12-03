@@ -65,7 +65,6 @@ class ProductRepository extends Repository implements IProductRepository
 
     public function update($product, $id)
     {
-
         $product_arr = [
             'name' => $product->getName(),
             'image' => $product->getImage(),
@@ -80,12 +79,6 @@ class ProductRepository extends Repository implements IProductRepository
 
     public function getPagedProducts($searchText, $sortOrder, $pageIndex, $pageSize)
     {
-        Log::Debug('searchText' . $searchText);
-        Log::Debug('pageIndex' . $pageIndex);
-        Log::Debug('pageSize' . $pageSize);
-        Log::Debug('sortOrder - column: ' . $sortOrder->columnName);
-        Log::Debug('sortOrder - direction: ' . $sortOrder->columnDirection);
-
         $productsArr = $this->getWithFilter('name', $searchText, $sortOrder->columnName, $sortOrder->columnDirection, $pageSize);
         return ProductsFactory::createProducts($productsArr);
     }

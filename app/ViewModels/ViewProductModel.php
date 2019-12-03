@@ -39,7 +39,7 @@ class ViewProductModel implements IViewProductModel
     {
         $records = $this->_productService->getProducts(
             $dataTablesModel->getSearchText(),
-            $dataTablesModel->getSortOrder(['id', 'name', 'image', 'price', 'discount']),
+            $dataTablesModel->getSortOrder(['id', 'name', 'image', 'price', 'discount', 'id']),
             $dataTablesModel->getPageIndex(),
             $dataTablesModel->getPageSize()
         );
@@ -67,6 +67,7 @@ class ViewProductModel implements IViewProductModel
                 $productData[$i]->getImage(),
                 $productData[$i]->getPrice(),
                 $productData[$i]->getDiscount(),
+                $productData[$i]->getId()
             ];
         }
         return $products;
