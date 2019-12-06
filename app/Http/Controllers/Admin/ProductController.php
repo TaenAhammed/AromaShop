@@ -8,6 +8,7 @@ use App\ViewModels\ICreateProductModel;
 use App\ViewModels\IViewProductModel;
 use Illuminate\Support\Facades\Log;
 use App\ViewModels\DataTablesModel;
+use App\ViewModels\IViewCategoryModel;
 
 class ProductController extends Controller
 {
@@ -16,9 +17,10 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(IViewProductModel $ViewProductModel)
+    public function index(IViewProductModel $viewProductModel)
     {
-        $products = $ViewProductModel->getAll();
+        $products = $viewProductModel->getAll();
+
         return view('admin.pages.products.index', ['products' => $products]);
     }
 
@@ -27,9 +29,11 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(IViewCategoryModel $viewCategoryModel)
     {
-        return view('admin.pages.products.create');
+        $categories = $viewCategoryModel->getAll();
+
+        return view('admin.pages.products.create', ['categories' => $categories]);
     }
 
     /**
@@ -38,10 +42,10 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, ICreateProductModel $CreateProductModel)
+    public function store(Request $request, ICreateProductModel $createProductModel)
     {
-        $CreateProductModel->store();
-        return redirect()->back();
+        $createProductModel->store();
+        // return redirect()->back();
     }
 
     /**
@@ -61,9 +65,9 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id, IViewProductModel $ViewProductModel)
+    public function edit($id, IViewProductModel $viewProductModel)
     {
-        $product = $ViewProductModel->get($id);
+        $product = $viewProductModel->get($id);
         return view('admin.pages.products.update', ['product' => $product]);
     }
 
@@ -98,9 +102,9 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id, IViewProductModel $ViewProductModel)
+    public function destroy($id, IViewProductModel $viewProductModel)
     {
-        $ViewProductModel->delete($id);
+        $viewProductModel->delete($id);
         return redirect('/admin/products');
     }
 }

@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/', 'PagesController@home');
+Route::get('/', 'PagesController@home')->name('shop');
 Route::get('/login', 'PagesController@login');
 Route::get('/register', 'PagesController@register');
 Route::get('/contact', 'PagesController@contact');
@@ -32,7 +32,7 @@ Route::get('/tracking', 'PagesController@tracking');
 // demo routes
 Route::get('/admin/dashboard', function () {
     return view('admin.pages.dashboard');
-});
+})->name('adminDashboard');
 
 // Blog routes
 Route::get('/blog', 'PagesController@blog');
@@ -43,6 +43,8 @@ Auth::routes();
 Route::prefix('admin')->group(function () {
     Route::get('/products/getProductsJson', 'Admin\ProductController@getProductsJson');
     Route::resource('/products', 'Admin\ProductController');
+
+    Route::resource('/categories', 'Admin\CategoryController');
 });
 
 Route::get('/home', 'HomeController@index')->name('home');

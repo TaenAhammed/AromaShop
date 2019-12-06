@@ -39,6 +39,32 @@ class AppServiceProvider extends ServiceProvider
             'App\ViewModels\IViewProductModel',
             'App\ViewModels\ViewProductModel'
         );
+
+
+        $this->app->bind(
+            'App\ViewModels\ICreateCategoryModel',
+            'App\ViewModels\CreateCategoryModel'
+        );
+
+        $this->app->bind(
+            'App\BusinessObjects\ICategory',
+            'App\BusinessObjects\Category'
+        );
+
+        $this->app->bind(
+            'App\Services\IProductCategoryService',
+            'App\Services\ProductCategoryService'
+        );
+
+        $this->app->bind(
+            'App\Repositories\IProductCategoryRepository',
+            'App\Repositories\ProductCategoryRepository'
+        );
+
+        $this->app->bind(
+            'App\ViewModels\IViewCategoryModel',
+            'App\ViewModels\ViewCategoryModel'
+        );
     }
 
     /**

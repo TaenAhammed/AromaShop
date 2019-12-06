@@ -33,7 +33,7 @@ class ProductsFactory
         $product->setName($model->name);
         $product->setImage($model->image);
         $product->setPrice($model->price);
-        $product->setCategory($model->category);
+        $product->setCategory($model->category_id);
         $product->setDiscount($model->discount);
         return $product;
     }

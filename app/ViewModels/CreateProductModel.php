@@ -16,7 +16,7 @@ class CreateProductModel implements ICreateProductModel
     public $name;
     public $image;
     public $price;
-    public $category;
+    public $category_id;
     public $discount;
 
     public function __construct(IProductService $productService, Request $request)
@@ -43,7 +43,7 @@ class CreateProductModel implements ICreateProductModel
         $this->name = $request->input('name');
         $this->image = $request->input('image');
         $this->price = $request->input('price');
-        $this->category = $request->input('category');
+        $this->category_id = (int) $request->input('category_id');
         $this->discount = $request->input('discount');
     }
 }

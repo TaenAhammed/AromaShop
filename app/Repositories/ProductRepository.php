@@ -16,7 +16,7 @@ class ProductRepository extends Repository implements IProductRepository
 
     public function getWithFilter($field, $fieldValue, $orderColumn, $orderDirection, $itemCount)
     {
-        return $this->model->where($field, 'like', '%'.$fieldValue.'%')
+        return $this->model->where($field, 'like', '%' . $fieldValue . '%')
             ->orderBy($orderColumn, $orderDirection)
             ->take($itemCount)
             ->get();
@@ -28,11 +28,12 @@ class ProductRepository extends Repository implements IProductRepository
             'name' => $product->getName(),
             'image' => $product->getImage(),
             'price' => $product->getPrice(),
-            'category' => $product->getCategory(),
+            'category_id' => $product->getCategory(),
             'discount' => $product->getDiscount()
         ];
 
         parent::add($product_arr);
+        // var_dump($product_arr);
     }
 
     public function getAll()

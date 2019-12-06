@@ -23,12 +23,14 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Product Management</h1>
+                    <h1 class="m-0 text-dark">Category Management</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Products</li>
+                        <li class="breadcrumb-item"><a href="{{ route('shop') }}">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('adminDashboard') }}">Admin</a></li>
+                        <li class="breadcrumb-item active"><a href="{{ route('categories.index') }}">Categories</a></li>
+                        <li class="breadcrumb-item active"><a href="{{ route('categories.create') }}">Create</a></li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -42,43 +44,17 @@
         <!-- Default box -->
         <div class="card card-primary">
             <div class="card-header">
-                <h3 class="card-title">Create Product</h3>
+                <h3 class="card-title">Create Category</h3>
             </div>
             <!-- /.card-header -->
             <!-- form start -->
-            <form role="form" action="/admin/products" method="POST">
+            <form role="form" action="{{ route('categories.store') }}" method="POST">
                 @csrf
                 <div class="card-body">
                     <div class="form-group">
                         <label for="name">Name</label>
                         <input type="text" class="form-control" id="name" placeholder="Product Name" name="name">
                     </div>
-
-                    <div class="form-group">
-                        <label for="image">Image</label>
-                        <input type="text" class="form-control" id="image" placeholder="Product Image" name="image">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="price">Price</label>
-                        <input type="number" class="form-control" id="price" placeholder="Product Price" name="price">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="category">Category</label>
-                        <select class="form-control select2" style="width: 100%;" id="category" name="category_id">
-                            @foreach ($categories as $category)
-                            <option value="{{ $category->getId() }}">{{ $category->getName() }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="discount">Discount</label>
-                        <input type="number" class="form-control" id="discount" placeholder="Product Discount"
-                            name="discount">
-                    </div>
-
                 </div>
                 <!-- /.card-body -->
 
@@ -101,10 +77,4 @@
 
 @section('scripts')
 @include('admin.includes.scripts')
-<script>
-    $(function () {
-    //Initialize Select2 Elements
-    $('.select2').select2()
-  })
-</script>
 @endsection

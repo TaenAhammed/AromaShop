@@ -12,3 +12,6 @@
 <script src="{{ asset('adminlte/plugins/chart.js/Chart.min.js') }}"></script>
 <script src="{{ asset('adminlte/js/demo.js') }}"></script>
 <script src="{{ asset('adminlte/js/pages/dashboard3.js') }}"></script>
+
+<!-- Select2 -->
+<script src="{{ asset('adminlte/plugins/select2/js/select2.full.min.js') }}"></script>
