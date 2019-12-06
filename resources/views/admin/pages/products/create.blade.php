@@ -98,4 +98,8 @@
 
 @section('scripts')
 @include('admin.includes.scripts')
+
+@component('admin.components.alert')
+@endcomponent
+
 @endsection

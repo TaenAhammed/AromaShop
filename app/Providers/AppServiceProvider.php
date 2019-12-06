@@ -39,6 +39,11 @@ class AppServiceProvider extends ServiceProvider
             'App\ViewModels\IViewProductModel',
             'App\ViewModels\ViewProductModel'
         );
+
+        $this->app->bind(
+            'App\Services\SessionService\ISessionService',
+            'App\Services\SessionService\SessionService'
+        );
     }
 
     /**
