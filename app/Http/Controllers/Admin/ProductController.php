@@ -44,9 +44,6 @@ class ProductController extends Controller
         $CreateProductModel->store();
         $sessionService->store('productAddedMessage', 'Product Added');
         return redirect()->back();
-
-        // $CreateProductModel->store();
-        // return redirect()->back()->withSuccess("Product Added");
     }
 
     /**

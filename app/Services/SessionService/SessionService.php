@@ -2,38 +2,30 @@
 
 namespace App\Services\SessionService;
 
-use Illuminate\Http\Request;
-
 class SessionService implements ISessionService
 {
-    private $_session;
-    public function __construct(Request $request)
-    {
-        $this->_session = $request->session();
-    }
-
     public function store($key, $value)
     {
-        $this->_session->put($key, $value);
+        session([$key => $value]);
     }
 
     public function delete($key)
     {
-        $this->_session->forget($key);
+        session()->forget($key);
     }
 
     public function get($key)
     {
-        $this->_session->get($key);
+        session()->get($key);
     }
 
     public function getAndDelete($key)
     {
-        $this->_session->pull($key);
+        session()->pull($key);
     }
 
     public function flush()
     {
-        $this->_session->flush();
+        session()->flush();
     }
 }

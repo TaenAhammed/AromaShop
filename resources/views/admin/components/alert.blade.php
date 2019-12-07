@@ -1,8 +1,7 @@
-@if (Session::has('success'))
+@if (Session::has('productAddedMessage'))
 
 <script>
-    // swal("Hello world!");
-    const Toast = Swal.mixin({
+    var productAddedMessage = Swal.mixin({
     toast: true,
     position: 'top-end',
     showConfirmButton: false,
@@ -16,7 +15,7 @@
     
     Toast.fire({
     icon: 'success',
-    title: '{{ Session::get('success') }}'
+    title: '{{ Session::pull('productAddedMessage') }}'
     })
 </script>
 
