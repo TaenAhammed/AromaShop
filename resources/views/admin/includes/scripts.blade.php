@@ -12,3 +12,9 @@
 <script src="{{ asset('adminlte/plugins/chart.js/Chart.min.js') }}"></script>
 <script src="{{ asset('adminlte/js/demo.js') }}"></script>
 <script src="{{ asset('adminlte/js/pages/dashboard3.js') }}"></script>
+
+{{-- Sweet alert --}}
+{{-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> --}}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+@yield('sweet')
