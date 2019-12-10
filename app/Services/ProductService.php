@@ -6,6 +6,7 @@ use App\BusinessObjects\IProduct;
 use App\Repositories\IProductRepository;
 use App\ViewModels\PagedData;
 use Illuminate\Support\Facades\Log;
+use File;
 
 class ProductService implements IProductService
 {
@@ -48,6 +49,9 @@ class ProductService implements IProductService
 
     public function update($product)
     {
+        $oldProductData = $this->_productRepository->getById($product->getId());
+        Log::Debug('Image Found:' . public_path("uploads") . "\\" . $oldProductData->getImage());
+        File::delete(public_path("uploads") . "\\" . $oldProductData->getImage());
         $this->_productRepository->update($product, $product->getId());
     }
 }
