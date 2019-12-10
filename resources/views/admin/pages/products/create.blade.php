@@ -46,7 +46,7 @@
             </div>
             <!-- /.card-header -->
             <!-- form start -->
-            <form role="form" action="/admin/products" method="POST">
+            <form role="form" action="/admin/products" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="card-body">
                     <div class="form-group">
@@ -56,7 +56,7 @@
 
                     <div class="form-group">
                         <label for="image">Image</label>
-                        <input type="text" class="form-control" id="image" placeholder="Product Image" name="image">
+                        <input type="file" class="form-control" id="image" placeholder="Product Image" name="image">
                     </div>
 
                     <div class="form-group">

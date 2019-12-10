@@ -39,9 +39,12 @@ class CreateProductModel implements ICreateProductModel
 
     private function loadFields(Request $request)
     {
+        $storename = time() . '.' . $request->file('image')->getClientOriginalExtension();
+        $request->file('image')->move(public_path('uploads'), $storename);
+        
         $this->id = $request->input('id');
         $this->name = $request->input('name');
-        $this->image = $request->input('image');
+        $this->image = $storename;
         $this->price = $request->input('price');
         $this->category = $request->input('category');
         $this->discount = $request->input('discount');

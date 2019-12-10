@@ -46,9 +46,6 @@ class ViewProductModel implements IViewProductModel
 
         $total = $records->total;
         $totalFiltered = $records->totalDisplay;
-
-        Log::debug("total:" . $total);
-
         return
             [
                 "recordsTotal" => $total,
@@ -64,7 +61,7 @@ class ViewProductModel implements IViewProductModel
             $products[] = [
                 $productData[$i]->getId(),
                 $productData[$i]->getName(),
-                $productData[$i]->getImage(),
+                "/uploads/" . $productData[$i]->getImage(),
                 $productData[$i]->getPrice(),
                 $productData[$i]->getDiscount(),
                 $productData[$i]->getId()

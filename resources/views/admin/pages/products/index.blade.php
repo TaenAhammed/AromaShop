@@ -179,6 +179,13 @@
                     },
                     {
                         "orderable": false,
+                        "targets": 2,
+                        "render": function (data, type, row) {
+                            return `<img style="width:100px" src='${data}'/>`;
+                        }
+                    },
+                    {
+                        "orderable": false,
                         "targets": 5,
                         "render": function (data, type, row) {
                             return `<button type="submit" class="btn btn-info btn-sm" onclick="window.location.href='/admin/products/${data}/edit'" value='${data}'>
