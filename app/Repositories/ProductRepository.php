@@ -5,6 +5,8 @@ namespace App\Repositories;
 use App\Repositories\Repository;
 use App\Factories\ProductsFactory as ProductsFactory;
 use Illuminate\Support\Facades\Log;
+use App\Models\Product;
+use App\Models\Category;
 
 class ProductRepository extends Repository implements IProductRepository
 {
@@ -24,16 +26,27 @@ class ProductRepository extends Repository implements IProductRepository
 
     public function add($product)
     {
-        $product_arr = [
-            'name' => $product->getName(),
-            'image' => $product->getImage(),
-            'price' => $product->getPrice(),
-            'category_id' => $product->getCategory(),
-            'discount' => $product->getDiscount()
-        ];
+        // $product_arr = [
+        //     'name' => $product->getName(),
+        //     'image' => $product->getImage(),
+        //     'price' => $product->getPrice(),
+        //     'category_id' => $product->getCategory(),
+        //     'discount' => $product->getDiscount()
+        // ];
 
-        parent::add($product_arr);
+        // parent::add($product_arr);
         // var_dump($product_arr);
+        // Product::create($product_arr);
+
+        $category = Category::where(['id' => $product->getCategory()])->first();
+
+        $productORM = new Product();
+        $productORM->name = $product->getName();
+        $productORM->image = $product->getImage();
+        $productORM->price = $product->getPrice();;
+        $productORM->category()->associate($category);
+        $productORM->discount = $product->getDiscount();
+        $productORM->save();
     }
 
     public function getAll()
