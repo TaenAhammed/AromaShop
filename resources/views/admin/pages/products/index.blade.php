@@ -153,11 +153,35 @@
             <!-- /.card-body -->
     </section>
     <!-- /.content -->
-
-
-
 </div>
 <!-- /.content-wrapper -->
+
+<div class="modal fade" id="modal-default">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">Delete</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <p>One fine body&hellip;</p>
+            <form id ="deleteForm" action="" method="post">
+                @csrf
+                @method('delete')
+            </form>
+        </div>
+        <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            <button type="button" id="deleteButton" class="btn btn-danger">Yes, Delete!</button>
+        </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
 @endsection
 
 
@@ -193,7 +217,7 @@
                                 </i>
                                 Edit
                             </button>
-                            <button type="submit" class="btn btn-danger btn-sm" href="#" value='${data}'>
+                            <button type="submit" class="btn btn-danger btn-sm show-bs-modal" href="#" data-id='${data}' value='${data}'>
                                 <i class="fas fa-trash">
                                 </i>
                                 Delete
@@ -201,6 +225,18 @@
                         }
                     }
                 ]
+            });
+
+            $('#example1').on('click', '.show-bs-modal', function (event) {
+                var id = $(this).data("id");
+                var modal = $("#modal-default");
+                modal.find('.modal-body p').text('Are you sure you want to delete this record?')
+                $("#deleteForm").attr("action", "/admin/products/" + id );
+                modal.modal('show');
+            });
+
+            $("#deleteButton").click(function(){
+                $("#deleteForm").submit();
             });
     });
 </script>
