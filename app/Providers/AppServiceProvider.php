@@ -40,7 +40,6 @@ class AppServiceProvider extends ServiceProvider
             'App\ViewModels\ViewProductModel'
         );
 
-
         $this->app->bind(
             'App\ViewModels\ICreateCategoryModel',
             'App\ViewModels\CreateCategoryModel'
@@ -64,6 +63,11 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             'App\ViewModels\IViewCategoryModel',
             'App\ViewModels\ViewCategoryModel'
+        );
+
+        $this->app->bind(
+            'App\Services\SessionService\ISessionService',
+            'App\Services\SessionService\SessionService'
         );
     }
 

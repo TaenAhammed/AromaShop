@@ -46,7 +46,7 @@
             </div>
             <!-- /.card-header -->
             <!-- form start -->
-            <form role="form" action="/admin/products/{{ $product->getId() }}" method="POST">
+            <form role="form" action="/admin/products/{{ $product->getId() }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <input type="hidden" value="{{ $product->getId() }}" name="id" />
@@ -59,7 +59,8 @@
 
                     <div class="form-group">
                         <label for="image">Image</label>
-                        <input type="text" class="form-control" id="image" placeholder="Product Image" name="image"
+                        <img src="/uploads/{{ $product->getImage() }}" style="width:150px" />
+                        <input type="file" class="form-control" id="image"  name="image"
                             value="{{ $product->getImage() }}">
                     </div>
 

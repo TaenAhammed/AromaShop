@@ -13,5 +13,11 @@
 <script src="{{ asset('adminlte/js/demo.js') }}"></script>
 <script src="{{ asset('adminlte/js/pages/dashboard3.js') }}"></script>
 
+
 <!-- Select2 -->
 <script src="{{ asset('adminlte/plugins/select2/js/select2.full.min.js') }}"></script>
+{{-- Sweet alert --}}
+{{-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> --}}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+@yield('sweet')

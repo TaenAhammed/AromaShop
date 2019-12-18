@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Services\SessionService\ISessionService;
 use App\ViewModels\ICreateProductModel;
 use App\ViewModels\IViewProductModel;
 use Illuminate\Support\Facades\Log;
@@ -42,10 +43,11 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, ICreateProductModel $createProductModel)
+    public function store(Request $request, ICreateProductModel $CreateProductModel, ISessionService $sessionService)
     {
-        $createProductModel->store();
-        // return redirect()->back();
+        $CreateProductModel->store();
+        $sessionService->store('productAddedMessage', 'Product Added');
+        return redirect()->back();
     }
 
     /**
