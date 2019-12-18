@@ -37,8 +37,9 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, ICreateCategoryModel $createCategoryModel)
+    public function store()
     {
+        $createCategoryModel = resolve('App\ViewModels\ICreateCategoryModel');
         $createCategoryModel->store();
     }
 
