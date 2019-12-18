@@ -41,7 +41,7 @@
 
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">DataTable with default features</h3>
+                <h3 class="card-title">List of Products:</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -60,97 +60,6 @@
             </div>
         </div>
         <!-- /.card -->
-
-        <!-- Default box -->
-        <div class="card">
-            <div class="card-header">
-                <h3 class="card-title">Products List:</h3>
-
-                <div class="card-tools">
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
-                        title="Collapse">
-                        <i class="fas fa-minus"></i></button>
-                    <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip"
-                        title="Remove">
-                        <i class="fas fa-times"></i></button>
-                </div>
-            </div>
-            <div class="card-body p-0">
-                <table class="table table-striped projects">
-                    <thead>
-                        <tr>
-                            <th style="width: 8%">
-                                Id
-                            </th>
-                            <th style="width: 18%">
-                                Name
-                            </th>
-                            <th style="width: 18%">
-                                Price
-                            </th>
-                            <th style="width: 18%">
-                                Category
-                            </th>
-                            <th style="width: 8%">
-                                Discount
-                            </th>
-                            <th style="width: 30%" class="text-center">
-                                Actions
-                            </th>
-
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($products as $product)
-
-                        <tr>
-                            <td>
-                                {{ $product->getId() }}
-                            </td>
-                            <td>
-                                {{ $product->getName() }}
-                            </td>
-                            <td>
-                                {{ $product->getPrice() }}
-                            </td>
-                            <td>
-                                {{ $product->getCategory() }}
-                            </td>
-                            <td>
-                                {{ $product->getDiscount() }}
-                            </td>
-                            <td class="project-actions text-right">
-                                <a class="btn btn-primary btn-sm" href="#">
-                                    <i class="fas fa-folder">
-                                    </i>
-                                    View
-                                </a>
-                                <form style="display:inline" action="/admin/products/{{ $product->getId() }}/edit"
-                                    method="GET">
-                                    <button type="submit" class="btn btn-info btn-sm" href="#">
-                                        <i class="fas fa-pencil-alt">
-                                        </i>
-                                        Edit
-                                    </button>
-                                </form>
-
-                                <form style="display:inline" action="/admin/products/{{ $product->getId() }}"
-                                    method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm" href="#">
-                                        <i class="fas fa-trash">
-                                        </i>
-                                        Delete
-                                    </button>
-                                </form>
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-            <!-- /.card-body -->
     </section>
     <!-- /.content -->
 </div>
@@ -159,23 +68,23 @@
 <div class="modal fade" id="modal-default">
     <div class="modal-dialog">
         <div class="modal-content">
-        <div class="modal-header">
-            <h4 class="modal-title">Delete</h4>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body">
-            <p>One fine body&hellip;</p>
-            <form id ="deleteForm" action="" method="post">
-                @csrf
-                @method('delete')
-            </form>
-        </div>
-        <div class="modal-footer justify-content-between">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-            <button type="button" id="deleteButton" class="btn btn-danger">Yes, Delete!</button>
-        </div>
+            <div class="modal-header">
+                <h4 class="modal-title">Delete</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>One fine body&hellip;</p>
+                <form id="deleteForm" action="" method="post">
+                    @csrf
+                    @method('delete')
+                </form>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" id="deleteButton" class="btn btn-danger">Yes, Delete!</button>
+            </div>
         </div>
         <!-- /.modal-content -->
     </div>
