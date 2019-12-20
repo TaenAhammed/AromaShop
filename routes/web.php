@@ -44,6 +44,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/products/getProductsJson', 'Admin\ProductController@getProductsJson');
     Route::resource('/products', 'Admin\ProductController');
 
+    Route::get('/categories/getCategoriesJson', 'Admin\CategoryController@getCategoriesJson');
     Route::resource('/categories', 'Admin\CategoryController');
 });
 

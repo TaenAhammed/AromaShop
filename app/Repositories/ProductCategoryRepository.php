@@ -25,4 +25,39 @@ class ProductCategoryRepository extends Repository implements IProductCategoryRe
         $categoryArr = parent::getAll();
         return ProductCategoryFactory::createCategoriesBO($categoryArr);
     }
+
+    public function getWithFilter($field, $fieldValue, $orderColumn, $orderDirection, $pageIndex, $pageSize)
+    {
+        $skipItems = ($pageIndex - 1) * $pageSize;
+
+        if ($fieldValue === null) {
+            return $this->model->orderBy($orderColumn, $orderDirection)
+                ->skip($skipItems)
+                ->take($pageSize)
+                ->get();
+        } else {
+            return $this->model->where($field, 'like', '%' . $fieldValue . '%')
+                ->orderBy($orderColumn, $orderDirection)
+                ->skip($skipItems)
+                ->take($pageSize)
+                ->get();
+        }
+    }
+
+    public function getPagedProducts($searchText, $sortOrder, $pageIndex, $pageSize)
+    {
+        $productsArr = $this->getWithFilter('name', $searchText, $sortOrder->columnName, $sortOrder->columnDirection, $pageIndex, $pageSize);
+        return ProductCategoryFactory::createProducts($productsArr);
+    }
+
+    public function getTotalProductCount()
+    {
+        return count($this->getAll());
+    }
+
+    public function getTotalDisplayableProducts($searchText)
+    {
+        return $this->model->where('name', 'like', '%' . $searchText . '%')
+            ->count();
+    }
 }

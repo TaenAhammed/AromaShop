@@ -17,4 +17,35 @@ class ViewCategoryModel implements IViewCategoryModel
     {
         return $this->_productCategoryService->getAll();
     }
+
+    public function getCategoriesJsonData(DataTablesModel $dataTablesModel)
+    {
+        $records = $this->_productCategoryService->getCategories(
+            $dataTablesModel->getSearchText(),
+            $dataTablesModel->getSortOrder(['id', 'name', 'id']),
+            $dataTablesModel->getPageIndex(),
+            $dataTablesModel->getPageSize()
+        );
+
+        $total = $records->total;
+        $totalFiltered = $records->totalDisplay;
+        return
+            [
+                "recordsTotal" => $total,
+                "recordsFiltered" => $totalFiltered,
+                "data" => $this->getProductFieldValues($records->data)
+            ];
+    }
+
+    private function getProductFieldValues($categoriesData)
+    {
+        $categories = [];
+        for ($i = 0; $i < count($categoriesData); $i++) {
+            $categories[] = [
+                $categoriesData[$i]->getId(),
+                $categoriesData[$i]->getName(),
+            ];
+        }
+        return $categories;
+    }
 }
