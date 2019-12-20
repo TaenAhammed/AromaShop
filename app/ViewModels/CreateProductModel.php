@@ -41,7 +41,7 @@ class CreateProductModel implements ICreateProductModel
     {
         $storename = time() . '.' . $request->file('image')->getClientOriginalExtension();
         $request->file('image')->move(public_path('uploads'), $storename);
-        
+
         $this->id = $request->input('id');
         $this->name = $request->input('name');
         $this->image = $storename;
