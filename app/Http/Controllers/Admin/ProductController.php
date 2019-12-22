@@ -5,21 +5,26 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Services\SessionService\ISessionService;
-use App\ViewModels\ICreateProductModel;
-use App\ViewModels\IViewProductModel;
 use Illuminate\Support\Facades\Log;
 use App\ViewModels\DataTablesModel;
-use App\ViewModels\IViewCategoryModel;
 
 class ProductController extends Controller
 {
+    private $_sessionService;
+
+    public function __construct(ISessionService $sessionService)
+    {
+        $this->_sessionService = $sessionService;
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(IViewProductModel $viewProductModel)
+    public function index()
     {
+        $viewProductModel = resolve('App\ViewModels\IViewProductModel');
+
         $products = $viewProductModel->getAll();
 
         return view('admin.pages.products.index', ['products' => $products]);
@@ -30,8 +35,10 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(IViewCategoryModel $viewCategoryModel)
+    public function create()
     {
+        $viewCategoryModel = resolve('App\ViewModels\IViewCategoryModel');
+
         $categories = $viewCategoryModel->getAll();
 
         return view('admin.pages.products.create', ['categories' => $categories]);
@@ -43,10 +50,13 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ICreateProductModel $CreateProductModel, ISessionService $sessionService)
+    public function store()
     {
-        $CreateProductModel->store();
-        $sessionService->store('productAddedMessage', 'Product Added');
+        $createProductModel = resolve('App\ViewModels\ICreateProductModel');
+
+        $createProductModel->store();
+        $this->_sessionService->store('productAddedMessage', 'Product Added');
+
         return redirect()->back();
     }
 
@@ -67,9 +77,12 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id, IViewProductModel $viewProductModel)
+    public function edit($id)
     {
+        $viewProductModel = resolve('App\ViewModels\IViewProductModel');
+
         $product = $viewProductModel->get($id);
+
         return view('admin.pages.products.update', ['product' => $product]);
     }
 
@@ -80,22 +93,22 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ICreateProductModel $createProductModel)
+    public function update()
     {
+        $createProductModel = resolve('App\ViewModels\ICreateProductModel');
+
         $createProductModel->update();
+
         return redirect('/admin/products');
     }
 
     public function getProductsJson(Request $request)
     {
-        $dataTablesModel = new DataTablesModel($request);
-        $model = resolve('App\ViewModels\IViewProductModel');
-        return $model->getProductsJsonData($dataTablesModel);
-    }
+        $viewProductModel = resolve('App\ViewModels\IViewProductModel');
 
-    public function test()
-    {
-        return redirect('/admin/products');
+        $dataTablesModel = new DataTablesModel($request);
+
+        return $viewProductModel->getProductsJsonData($dataTablesModel);
     }
 
     /**
@@ -104,9 +117,12 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id, IViewProductModel $viewProductModel)
+    public function destroy($id)
     {
+        $viewProductModel = resolve('App\ViewModels\IViewProductModel');
+
         $viewProductModel->delete($id);
+
         return redirect('/admin/products');
     }
 }
