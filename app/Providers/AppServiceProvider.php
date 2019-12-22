@@ -65,7 +65,7 @@ class AppServiceProvider extends ServiceProvider
             'App\ViewModels\ViewCategoryModel'
         );
 
-        $this->app->bind(
+        $this->app->singleton(
             'App\Services\SessionService\ISessionService',
             'App\Services\SessionService\SessionService'
         );
