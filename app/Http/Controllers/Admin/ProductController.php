@@ -51,7 +51,7 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store()
+    public function store(Request $request)
     {
         $createProductModel = resolve('App\ViewModels\ICreateProductModel');
 
@@ -84,7 +84,7 @@ class ProductController extends Controller
 
         $product = $viewProductModel->get($id);
 
-        return view('admin.pages.products.update', ['product' => $product]);
+        return view('admin.pages.products.edit', ['product' => $product]);
     }
 
     /**
@@ -94,7 +94,7 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update()
+    public function update(Request $request)
     {
         $createProductModel = resolve('App\ViewModels\ICreateProductModel');
 

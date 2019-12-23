@@ -48,9 +48,19 @@ class ProductService implements IProductService
 
     public function update($product)
     {
-        $oldProductData = $this->_productRepository->getById($product->getId());
-        Log::Debug('Image Found:' . public_path("uploads") . "\\" . $oldProductData->getImage());
-        File::delete(public_path("uploads") . "\\" . $oldProductData->getImage());
+        if ($product->getImage() !== 'Not Available') {
+            Log::debug('Product Service');
+            Log::debug($product->getId());
+            Log::debug($product->getName());
+            Log::debug($product->getImage());
+            Log::debug($product->getPrice());
+            Log::debug($product->getCategory());
+            Log::debug($product->getDiscount());
+            $oldProductData = $this->_productRepository->getById($product->getId());
+            // Log::Debug('Image Found:' . public_path("uploads") . "\\" . $oldProductData->getImage());
+            File::delete(public_path("uploads") . "\\" . $oldProductData->getImage());
+        }
+
         $this->_productRepository->update($product, $product->getId());
     }
 }

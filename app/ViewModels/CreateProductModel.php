@@ -27,24 +27,30 @@ class CreateProductModel implements ICreateProductModel
 
     public function store()
     {
-        $product = ProductsFactory::convertProductFromModel($this);
+        $product = ProductsFactory::createProductBOFromModel($this);
         $this->_productService->store($product);
     }
 
     public function update()
     {
-        $product = ProductsFactory::convertProductFromModel($this);
+        $product = ProductsFactory::createProductBOFromModel($this);
         $this->_productService->update($product);
     }
 
     private function loadFields(Request $request)
     {
-        $imageName = time() . '.' . $request->file('image')->getClientOriginalExtension();
-        $request->file('image')->move(public_path('uploads'), $imageName);
+        if ($request->file('image')) {
+            $imageName = time() . '.' . $request->file('image')->getClientOriginalExtension();
+            $request->file('image')->move(public_path('uploads'), $imageName);
+            $this->image = $imageName;
+        }
+
+        if (!$this->image) {
+            $this->image = 'Not Available';
+        }
 
         $this->id = $request->input('id');
         $this->name = $request->input('name');
-        $this->image = $imageName;
         $this->price = $request->input('price');
         $this->category_id = (int) $request->input('category_id');
         $this->discount = $request->input('discount') ?? 0;

@@ -46,7 +46,8 @@
             </div>
             <!-- /.card-header -->
             <!-- form start -->
-            <form role="form" action="/admin/products/{{ $product->getId() }}" method="POST" enctype="multipart/form-data">
+            <form role="form" action="/admin/products/{{ $product->getId() }}" method="POST"
+                enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <input type="hidden" value="{{ $product->getId() }}" name="id" />
@@ -58,10 +59,15 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="image">Image</label>
+                        <label for="image">Image</label><br>
+
+                        @if ($product->getImage() === 'Not Available')
+                        <p>Image is not available</p>
+                        @else
                         <img src="/uploads/{{ $product->getImage() }}" style="width:150px" />
-                        <input type="file" class="form-control" id="image"  name="image"
-                            value="{{ $product->getImage() }}">
+                        @endif
+
+                        <input type="file" id="image" name="image" value="{{ $product->getImage() }}">
                     </div>
 
                     <div class="form-group">

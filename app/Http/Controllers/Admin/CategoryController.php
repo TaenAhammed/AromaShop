@@ -4,18 +4,27 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Services\SessionService\ISessionService;
 use App\ViewModels\DataTablesModel;
 
-use App\ViewModels\IViewCategoryModel;
 
 class CategoryController extends Controller
 {
+    private $_sessionService;
 
-    public function index(IViewCategoryModel $viewCategoryModel)
+    public function __construct(ISessionService $sessionService)
     {
+        $this->_sessionService = $sessionService;
+    }
+
+    public function index()
+    {
+        $viewCategoryModel = resolve('App\ViewModels\IViewCategoryModel');
+
         $categories = $viewCategoryModel->getAll();
         // return $categories;
         // var_dump($categories);
+
         return view('admin.pages.categories.index');
     }
 
@@ -27,7 +36,11 @@ class CategoryController extends Controller
     public function store()
     {
         $createCategoryModel = resolve('App\ViewModels\ICreateCategoryModel');
+
         $createCategoryModel->store();
+        $this->_sessionService->store('categoryAddedMessage', 'Category Added');
+
+        return redirect()->back();
     }
 
     public function show($id)

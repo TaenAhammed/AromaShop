@@ -114,7 +114,12 @@
                         "orderable": false,
                         "targets": 2,
                         "render": function (data, type, row) {
-                            return `<img style="width:100px" src='${data}'/>`;
+                            if(data === '/uploads/Not Available') {
+                               return `<p>Not available</p>`;
+                            } else {
+                               return `<img style="width:100px" src='${data}'/>`;
+                            }
+                            
                         }
                     },
                     {

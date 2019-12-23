@@ -26,7 +26,7 @@ class ProductsFactory
         return $products;
     }
 
-    public static function convertProductFromModel(ICreateProductModel $model)
+    public static function createProductBOFromModel(ICreateProductModel $model)
     {
         $product = resolve('App\BusinessObjects\IProduct');
         $product->setId($model->id);

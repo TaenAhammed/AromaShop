@@ -55,8 +55,8 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="image">Image</label>
-                        <input type="file" class="form-control" id="image" placeholder="Product Image" name="image">
+                        <label for="image">Image</label><br>
+                        <input type="file" id="image" placeholder="Product Image" name="image">
                     </div>
 
                     <div class="form-group">
