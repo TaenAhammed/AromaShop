@@ -3,6 +3,7 @@
 namespace App\ViewModels;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class DataTablesModel
 {
@@ -31,9 +32,12 @@ class DataTablesModel
     public function getSortOrder($columnNames)
     {
         $orders = $this->_request->input("order");
-        if($orders != null && count($orders) > 0)
-        {
-            return new SortOrder($columnNames[$orders[0]['column']], $orders[0]['dir']);
+
+        if ($orders != null && count($orders) > 0) {
+            $columnName = $columnNames[$orders[0]['column']];
+            $columnDirection = $orders[0]['dir'];
+
+            return resolve('App\ViewModels\SortOrder', ['columnName' => $columnName, 'columnDirection' => $columnDirection]);
         }
     }
 

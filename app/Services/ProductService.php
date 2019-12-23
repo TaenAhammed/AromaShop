@@ -30,11 +30,10 @@ class ProductService implements IProductService
     public function getProducts($searchText, $sortOrder, $pageIndex, $pageSize)
     {
         $products = $this->_productRepository->getPagedProducts($searchText, $sortOrder, $pageIndex, $pageSize);
-        Log::Debug('DataFound:' . count($products));
         $totalCount = $this->_productRepository->getTotalProductCount();
         $totalDisplayCount = $this->_productRepository->getTotalDisplayableProducts($searchText);
 
-        return new PagedData($products, $totalCount, $totalDisplayCount);
+        return resolve('App\ViewModels\PagedData', ['data' => $products, 'total' => $totalCount, 'totalDisplay' => $totalDisplayCount]);
     }
 
     public function get($product)

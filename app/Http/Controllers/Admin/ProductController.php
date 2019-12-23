@@ -16,6 +16,7 @@ class ProductController extends Controller
     {
         $this->_sessionService = $sessionService;
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -105,8 +106,7 @@ class ProductController extends Controller
     public function getProductsJson(Request $request)
     {
         $viewProductModel = resolve('App\ViewModels\IViewProductModel');
-
-        $dataTablesModel = new DataTablesModel($request);
+        $dataTablesModel = resolve('App\ViewModels\DataTablesModel', ['request' => $request]);
 
         return $viewProductModel->getProductsJsonData($dataTablesModel);
     }

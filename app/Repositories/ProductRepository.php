@@ -107,6 +107,7 @@ class ProductRepository extends Repository implements IProductRepository
     public function getPagedProducts($searchText, $sortOrder, $pageIndex, $pageSize)
     {
         $productsArr = $this->getWithFilter('name', $searchText, $sortOrder->columnName, $sortOrder->columnDirection, $pageIndex, $pageSize);
+
         return ProductsFactory::createProducts($productsArr);
     }
 
