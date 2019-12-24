@@ -51,4 +51,14 @@ class User extends Authenticatable
     {
         return $this->roles()->whereIn('name', $roles)->first() !== null;
     }
+
+    public function purchaseOrders()
+    {
+        return $this->hasMany('App\Models\PurchaseOrder');
+    }
+
+    public function favoriteProducts()
+    {
+        return $this->hasMany('App\Models\FavoriteProduct');
+    }
 }

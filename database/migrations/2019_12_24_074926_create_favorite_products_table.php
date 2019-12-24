@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFavouriteProductsTable extends Migration
+class CreateFavoriteProductsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateFavouriteProductsTable extends Migration
      */
     public function up()
     {
-        Schema::create('favourite_products', function (Blueprint $table) {
+        Schema::create('favorite_products', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('product_id');
@@ -28,6 +28,6 @@ class CreateFavouriteProductsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('favourite_products');
+        Schema::dropIfExists('favorite_products');
     }
 }
